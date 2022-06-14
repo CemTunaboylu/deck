@@ -15,22 +15,21 @@ func (d *Deck) GetCards() []Card {
 	return d.cards
 }
 
-func (d* Deck) GetDealIndex() int {
+func (d *Deck) GetDealIndex() int {
 	return d.deal_index
 }
 
-func (d* Deck) IncrementDealIndex(n int) {
+func (d *Deck) IncrementDealIndex(n int) {
 	d.deal_index += n
 }
 
-func (d* Deck) Deal(amt int) []Card{
-	defer d.IncrementDealIndex(amt) 
+func (d *Deck) Deal(amt int) []Card {
+	defer d.IncrementDealIndex(amt)
 	return d.cards[d.deal_index : d.deal_index+amt]
 }
 
-
-func (d Deck) Len() int      { return len(d.cards) }
-func (d Deck) Swap(i, j int) { d.cards[i], d.cards[j] = d.cards[j], d.cards[i] }
+func (d *Deck) Len() int      { return len(d.cards) }
+func (d *Deck) Swap(i, j int) { d.cards[i], d.cards[j] = d.cards[j], d.cards[i] }
 
 // StandardDeckOrder implements sort.Interface by providing Less and using the Len and Swap methods with StandardCardOrder.
 // Since we implement the sort.Interface, sort does not have to use reflection to determine elms and length thus will be faster.
