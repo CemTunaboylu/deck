@@ -11,6 +11,24 @@ type Deck struct {
 	deal_index int
 }
 
+func (d *Deck) GetCards() []Card {
+	return d.cards
+}
+
+func (d* Deck) GetDealIndex() int {
+	return d.deal_index
+}
+
+func (d* Deck) IncrementDealIndex(n int) {
+	d.deal_index += n
+}
+
+func (d* Deck) Deal(amt int) []Card{
+	defer d.IncrementDealIndex(amt) 
+	return d.cards[d.deal_index : d.deal_index+amt]
+}
+
+
 func (d Deck) Len() int      { return len(d.cards) }
 func (d Deck) Swap(i, j int) { d.cards[i], d.cards[j] = d.cards[j], d.cards[i] }
 

@@ -13,7 +13,28 @@ const STANDARD_DECK_SIZE = 52
 // pos = bypass + (each_suit * s_i) + f_i
 // (each_suit * s_i) this is happening too many times, get it out of the inner loop
 
-// Find a way to objectify
+func TestDeal(t *testing.T){
+	test_name := "Deal Test"
+	
+	d := NewDeck(StandardCardGenerator())
+	
+	deal_amt := 5
+	t.Run(test_name, func(t *testing.T){
+		cards := d.Deal(deal_amt)
+		//fmt.Print("Cards dealt :")
+		i := 0
+		for _, c := range cards{
+			if c != d.cards[i]{
+				t.Errorf("%v should have been %v\n", c.String(), d.cards[i].String())
+			} 
+			i++
+		}
+		if d.deal_index != deal_amt {
+			t.Errorf("Deal index is %d, expected %d\n", d.deal_index , deal_amt)
+		}
+	})
+}
+
 func TestStandardDeck(t *testing.T) {
 
 	test_name := "Standard Deck Test"
